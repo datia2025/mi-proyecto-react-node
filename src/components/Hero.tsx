@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({
       />
 
       {/* Capa oscura encima de la imagen para mejorar contraste */}
-      <div className="absolute inset-0 bg-[#1A237E] opacity-70 z-[-1]" />
+      <div className="absolute inset-0 bg-[#1A237E] opacity-60 z-[-1]" />
 
       {/* Círculos decorativos */}
       <div className="absolute inset-0 pointer-events-none z-0">

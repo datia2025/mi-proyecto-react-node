@@ -1,7 +1,11 @@
 import React from 'react';
 import { Users, Target, Award, Zap } from 'lucide-react';
-import Hero from '../components/Hero';
-import SectionHeader from '../components/SectionHeader';
+import Hero from '../components/Hero'; // Asumo que la ruta es correcta
+import SectionHeader from '../components/SectionHeader'; // Asumo que la ruta es correcta
+
+// IMPORTA LAS IMÁGENES LOCALES
+import lorenaOsorioImage from '../assets/lore.png'; // Ajusta esta ruta si es necesario
+import fernandoGutierrezImage from '../assets/fer.png'; 
 
 const AboutPage: React.FC = () => {
   return (
@@ -54,22 +58,17 @@ const AboutPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-gray-700 mb-6">
-                Datia nació en 2018 con una misión clara: hacer que el trabajo sea más 
-                inteligente, eficiente y enfocado en lo que realmente importa. Fundada 
-                por un equipo de expertos en tecnología y procesos de negocio, identificamos 
-                una oportunidad para transformar la forma en que las empresas operan.
+                Desde el año 2023, nos hemos dedicado al mundo de la inteligencia artificial, acumulando miles de horas de entrenamiento y desarrollo. 
+                En 2025, decidimos fundar nuestra propia empresa, con la misión de transformar la vida de las personas, permitiéndoles alcanzar su
+                máximo potencial a través de la IA. 
               </p>
               <p className="text-gray-700 mb-6">
-                Comenzamos desarrollando soluciones para departamentos de recursos humanos, 
-                automatizando procesos de selección y evaluación. Pronto, expandimos nuestras 
-                capacidades a áreas financieras, operativas y de marketing, siempre con el 
-                mismo enfoque: utilizar la automatización y la inteligencia artificial para 
-                potenciar el trabajo humano.
+                Nuestro objetivo es que la gente vea la IA no como algo lejano o inalcanzable, sino como una 
+                herramienta que les puede dar superpoderes, mejorando su calidad de vida y abriendo un mundo de posibilidades.
               </p>
               <p className="text-gray-700">
-                Hoy, Datia es reconocida como una empresa líder en soluciones inteligentes 
-                para negocios, con clientes en diversos sectores que han transformado su 
-                forma de trabajar gracias a nuestras herramientas y metodologías.
+                Datia no es sólo una empresa tecnológica, es un compromiso profundo con el empoderamiento humano, derribando 
+                la barrera de lo complejo para revelar el potencial transformador de la IA en cada individuo.
               </p>
             </div>
             <div className="rounded-lg overflow-hidden shadow-xl">
@@ -147,63 +146,42 @@ const AboutPage: React.FC = () => {
             subtitle="Las mentes brillantes detrás de Datia"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Team Member 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            {/* Team Member 1 - Fernando Gutiérrez */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md group">
               <div className="relative overflow-hidden">
                 <img 
-                  src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="CEO" 
+                  src={fernandoGutierrezImage} 
+                  alt="CEO Fernando Gutiérrez" 
                   className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-[#1A237E]">Alejandro Torres</h3>
+                <h3 className="text-xl font-bold text-[#1A237E]">Fernando Gutiérrez</h3>
                 <p className="text-[#FF6B2B] font-medium mb-3">CEO & Fundador</p>
                 <p className="text-gray-600">
                   Visionario tecnológico con más de 15 años de experiencia 
-                  en transformación digital y soluciones empresariales.
+                  en transformación digital. Experto en IA y automatización.
                 </p>
               </div>
             </div>
 
-            {/* Team Member 2 */}
+            {/* Team Member 2 - Lorena Osorio */}
             <div className="bg-white rounded-lg overflow-hidden shadow-md group">
               <div className="relative overflow-hidden">
                 <img 
-                  src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="CTO" 
+                  src={lorenaOsorioImage} 
+                  alt="CTO Lorena Osorio"
                   className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-[#1A237E]">Sofía Ramírez</h3>
+                <h3 className="text-xl font-bold text-[#1A237E]">Lorena Osorio</h3>
                 <p className="text-[#FF6B2B] font-medium mb-3">CTO</p>
                 <p className="text-gray-600">
-                  Experta en IA y desarrollo de software con un enfoque 
-                  en crear soluciones escalables y fáciles de usar.
-                </p>
-              </div>
-            </div>
-
-            {/* Team Member 3 */}
-            <div className="bg-white rounded-lg overflow-hidden shadow-md group">
-              <div className="relative overflow-hidden">
-                <img 
-                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" 
-                  alt="COO" 
-                  className="w-full h-72 object-cover transition-transform duration-500 group-hover:scale-110" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-70 transition-opacity duration-300"></div>
-              </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-[#1A237E]">Gabriel Méndez</h3>
-                <p className="text-[#FF6B2B] font-medium mb-3">COO</p>
-                <p className="text-gray-600">
-                  Especialista en operaciones y procesos de negocio con amplia 
-                  experiencia en implementación de soluciones empresariales.
+                  Experta en gestión de talento, staffing y administración de recursos.
                 </p>
               </div>
             </div>

@@ -13,7 +13,7 @@ import {
 import Hero from '../components/Hero';
 import SectionHeader from '../components/SectionHeader';
 import ServiceCard from '../components/ServiceCard';
-import TestimonialCard from '../components/TestimonialCard';
+import TestimonialCard from '../components/TestimonialCard'; // Asumimos que este ya está modificado para no usar imageUrl
 
 // ✅ Importar imagen local
 import peopleImage from '../assets/people.png';
@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
     <>
       {/* Hero Section */}
       <Hero
-        title="Redescubre el trabajo. Impulsa tu potencial."
+        title="Redescubre el trabajo con tecnologías que trabajan para tí"
         subtitle="Conectamos personas con el poder de la automatización y la inteligencia artificial para transformar la forma en que trabajas."
         buttonText="Descubre cómo"
         buttonLink="#servicios"
@@ -36,7 +36,7 @@ const HomePage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-bold text-[#1A237E] mb-6">
-                Personas potenciando personas con automatización e inteligencia artificial
+                Redefiniendo el trabajo para mejorar la calidad de vida de las personas
               </h2>
               <p className="text-gray-600 mb-8 text-lg">
                 En Datia, creemos en el poder de la tecnología para amplificar el potencial humano. 
@@ -175,7 +175,7 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-[#1A237E]">
+      <section className="py-20 bg-[#283A80]">
         <div className="container mx-auto px-4">
           <SectionHeader
             title="Historias de Transformación"
@@ -183,28 +183,22 @@ const HomePage: React.FC = () => {
             color="light"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
             <TestimonialCard
-              name="Carlos Rodríguez"
-              position="Director de RRHH"
-              company="Global Tech"
-              testimonial="Datia transformó nuestra gestión de talento humano. Ahora tenemos evaluaciones más objetivas y procesos de selección más eficientes, lo que nos permite enfocarnos en lo que realmente importa: desarrollar a nuestro personal."
-              imageUrl="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              name="Juan Ricardo Navas"
+              position="Gerente General"
+              company="Crea Finanzas Inteligentes"
+              testimonial="Las soluciones de automatización de Datia han revolucionado la manera en que gestionamos nuestras proyecciones financieras y pensionales. Lo que antes nos tomaba horas de cálculos y ajustes manuales, ahora se realiza en cuestión de minutos, permitiéndonos tomar decisiones estratégicas con mayor rapidez y precisión."
+              // imageUrl prop eliminada
             />
             <TestimonialCard
-              name="Ana Martínez"
+              name="José Luis Rodríguez"
               position="CFO"
-              company="Innovatech"
-              testimonial="Las soluciones financieras de Datia nos permiten tener KPIs en tiempo real y conciliaciones bancarias automatizadas. Hemos reducido el tiempo dedicado a tareas administrativas en un 70% y aumentado la precisión de nuestros informes."
-              imageUrl="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+              company="Club Social"
+              testimonial="Gracias a la mentoría en inteligencia artificial y el diseño de dashboards, hemos optimizado nuestros procesos financieros, reduciendo tiempos y mejorando la comunicación de resultados. La presentación visual y estructurada de la información ha facilitado el análisis y la toma de decisiones estratégicas, asegurando una mejor comprensión y alineación dentro del equipo y la alta dirección."
+              // imageUrl prop eliminada
             />
-            <TestimonialCard
-              name="Miguel Sánchez"
-              position="Director de Operaciones"
-              company="Logística Express"
-              testimonial="Con las soluciones de Datia, nuestras operaciones fluyen sin interrupciones. El monitoreo de órdenes de trabajo y las listas de verificación inteligentes han revolucionado nuestra eficiencia operativa."
-              imageUrl="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            />
+            
           </div>
           
           <div className="text-center mt-12">

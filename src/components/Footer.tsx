@@ -5,7 +5,7 @@ import logo from '../assets/logo.png';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#1A237E] text-white">
+    <footer className="bg-[#283A80] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Column 1: Logo and Description */}
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
               <img src={logo} alt="Datia Logo" className="h-12 mb-4" />
             </Link>
             <p className="text-gray-300 mt-4">
-              Personas potenciando personas con automatización e inteligencia artificial.
+              Potenciando personas con tecnología.
             </p>
             <div className="flex mt-6 space-x-4">
               <SocialIcon icon={<Facebook size={20} />} />
@@ -32,7 +32,6 @@ const Footer: React.FC = () => {
               <FooterLink to="/nosotros" label="Nosotros" />
               <FooterLink to="/aprender-con-ia" label="Aprender con IA" />
               <FooterLink to="/historias" label="Historias de Transformación" />
-              <FooterLink to="/forma-de-trabajar" label="Nuestra Forma de Trabajar" />
               <FooterLink to="/soluciones" label="Soluciones Inteligentes" />
               <FooterLink to="/contacto" label="Contacto" />
             </ul>
@@ -45,7 +44,7 @@ const Footer: React.FC = () => {
               <FooterLink to="/soluciones/talento-humano" label="Talento Humano Reinventado" />
               <FooterLink to="/soluciones/finanzas" label="Finanzas Reinventadas" />
               <FooterLink to="/soluciones/operaciones" label="Operaciones que Fluyen" />
-              <FooterLink to="/soluciones/marketing" label="Smart Marketing" />
+              <FooterLink to="/soluciones/marketing" label="NextGen Marketing" />
               <FooterLink to="/soluciones/chatbots" label="Conversaciones con Chatbots" />
               <FooterLink to="/soluciones/apps-web" label="Apps Web al Instante" />
             </ul>
@@ -57,15 +56,15 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-3 mt-1 text-[#FF6B2B]" />
-                <span>Calle Principal 123, Ciudad, País</span>
+                <span>Calle 146a No.54c-86 Of.201</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-3 text-[#FF6B2B]" />
-                <span>+123 456 7890</span>
+                <span>+57 324 6831933</span>
               </li>
               <li className="flex items-center">
                 <Mail size={20} className="mr-3 text-[#FF6B2B]" />
-                <span>info@datia.com</span>
+                <span>fernando@datia.digital</span>
               </li>
             </ul>
           </div>

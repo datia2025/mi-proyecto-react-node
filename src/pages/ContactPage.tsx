@@ -34,8 +34,8 @@ const ContactPage: React.FC = () => {
                   <div>
                     <h4 className="font-semibold text-[#1A237E] mb-1">Dirección</h4>
                     <p className="text-gray-600">
-                      Calle Principal 123<br />
-                      Ciudad, País, CP 12345
+                      Calle 146a No.54c-86 Of.201<br />
+                      Bogotá, Colombia
                     </p>
                   </div>
                 </div>
@@ -46,7 +46,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-[#1A237E] mb-1">Teléfono</h4>
-                    <p className="text-gray-600">+123 456 7890</p>
+                    <p className="text-gray-600">+57 324 6831933</p>
                   </div>
                 </div>
 
@@ -56,7 +56,7 @@ const ContactPage: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold text-[#1A237E] mb-1">Correo electrónico</h4>
-                    <p className="text-gray-600">info@datia.com</p>
+                    <p className="text-gray-600">fernando@datia.digital</p>
                   </div>
                 </div>
 
@@ -67,8 +67,7 @@ const ContactPage: React.FC = () => {
                   <div>
                     <h4 className="font-semibold text-[#1A237E] mb-1">Horario de atención</h4>
                     <p className="text-gray-600">
-                      Lunes a Viernes: 9:00 AM - 6:00 PM<br />
-                      Sábados: 9:00 AM - 1:00 PM
+                      Lunes a Viernes: 8:00 AM - 6:00 PM<br />
                     </p>
                   </div>
                 </div>
@@ -83,23 +82,10 @@ const ContactPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Map Section */}
-      <section className="py-0">
-        <div className="h-96 w-full bg-gray-300">
-          {/* This would ideally be a Google Maps iframe, but for this example, we'll use a placeholder */}
-          <div className="w-full h-full flex items-center justify-center bg-[#ECEFF1]">
-            <div className="text-center">
-              <MapPin size={48} className="text-[#FF6B2B] mx-auto mb-4" />
-              <p className="text-[#1A237E] font-medium">
-                Calle Principal 123, Ciudad, País
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+
 
       {/* FAQ Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-[#1A237E] mb-12 text-center">
             Preguntas Frecuentes

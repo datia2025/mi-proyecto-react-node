@@ -1,9 +1,50 @@
 import React from 'react';
-import { DollarSign, BarChart2, LineChart, FileText } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom'; // Añadido Link y useLocation
+import { 
+  DollarSign, 
+  BarChart2, // Usado en las tarjetas de soluciones específicas
+  LineChart, 
+  FileText as FileTextIcon, // Renombrado para evitar conflicto si FileText se usa para el icono de la barra de navegación
+  List // Para el botón "Todas las Soluciones"
+  // Iconos para la barra de navegación (pueden omitirse si no se usan directamente en botones)
+  // Users, Settings, Brain, MessageSquare, FileCode, 
+} from 'lucide-react';
 import Hero from '../../components/Hero';
 import SectionHeader from '../../components/SectionHeader';
 
+// --- Datos para la Navegación por Pestañas (Replicado o desde un archivo compartido) ---
+// Este array define las principales categorías de soluciones para la barra de navegación.
+const mainServicesNavigationData = [
+  {
+    navLabel: "Talento Humano",
+    link: "/soluciones/talento-humano",
+  },
+  {
+    navLabel: "Finanzas",
+    link: "/soluciones/finanzas", // Enlace a esta misma página (se resaltará)
+  },
+  {
+    navLabel: "Operaciones",
+    link: "/soluciones/operaciones",
+  },
+  {
+    navLabel: "Marketing",
+    link: "/soluciones/marketing",
+  },
+  {
+    navLabel: "Chatbots",
+    link: "/soluciones/chatbots",
+  },
+  {
+    navLabel: "Apps Web",
+    link: "/soluciones/apps-web",
+  },
+];
+
 const FinancePage: React.FC = () => {
+  const location = useLocation(); // Hook para obtener la ruta actual
+  const baseSolutionsPath = "/soluciones"; // Ruta base para el botón "Todas las Soluciones"
+
   return (
     <>
       <Hero
@@ -11,6 +52,40 @@ const FinancePage: React.FC = () => {
         subtitle="Optimiza tus procesos financieros con automatización inteligente y análisis predictivo."
         imageUrl="https://images.pexels.com/photos/6801874/pexels-photo-6801874.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
       />
+
+      {/* NAVEGACIÓN POR PESTAÑAS/BOTONES DE SOLUCIONES (AÑADIDA AQUÍ) */}
+      <section className="py-6 bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-wrap justify-center items-center gap-x-3 gap-y-2 md:gap-x-4">
+            <Link
+              to={baseSolutionsPath}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out flex items-center gap-2
+                ${ 
+                  location.pathname === baseSolutionsPath || 
+                  !mainServicesNavigationData.some(s => location.pathname.startsWith(s.link)) && location.pathname.startsWith(baseSolutionsPath)
+                  ? 'bg-[#1A237E] text-white hover:bg-indigo-700'
+                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                }`}
+            >
+              <List size={16} />
+              Todas las Soluciones
+            </Link>
+            {mainServicesNavigationData.map((service) => (
+              <Link
+                key={service.navLabel}
+                to={service.link}
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-colors duration-150 ease-in-out
+                  ${ location.pathname.startsWith(service.link) 
+                    ? 'bg-[#1A237E] text-white hover:bg-indigo-700' 
+                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-900'
+                  }`}
+              >
+                {service.navLabel}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
       
       {/* Overview Section */}
       <section className="py-20">
@@ -48,11 +123,11 @@ const FinancePage: React.FC = () => {
       <section className="py-20 bg-[#ECEFF1]">
         <div className="container mx-auto px-4">
           <SectionHeader
-            title="Nuestras Soluciones"
+            title="Lo que puedes lograr"
             subtitle="Optimiza cada aspecto de tus procesos financieros"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12"> {/* Añadido mt-12 */}
             {/* Solution 1 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
               <div className="h-3 bg-[#FF6B2B]"></div>
@@ -167,10 +242,10 @@ const FinancePage: React.FC = () => {
 
             {/* Solution 4 */}
             <div className="bg-white rounded-lg shadow-md overflow-hidden group hover:shadow-lg transition-shadow duration-300">
-              <div className="h-3 bg-[#FF6B2B]"></div>
+              <div className="h-3 bg-[#FF6B2B]"></div> {/* Reutilizando color naranja para consistencia visual con la primera tarjeta */}
               <div className="p-6">
                 <div className="p-4 rounded-full bg-[#FF6B2B] bg-opacity-10 w-16 h-16 flex items-center justify-center mb-6 group-hover:bg-[#FF6B2B] transition-colors duration-300">
-                  <FileText 
+                  <FileTextIcon 
                     size={28} 
                     className="text-[#FF6B2B] group-hover:text-white transition-colors duration-300" 
                   />
@@ -213,7 +288,7 @@ const FinancePage: React.FC = () => {
             subtitle="¿Por qué elegir nuestras soluciones financieras?"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12"> {/* Añadido mt-12 y lg:grid-cols-3 para 6 items */}
             <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
               <div className="rounded-full bg-[#FF6B2B] bg-opacity-10 w-16 h-16 flex items-center justify-center mb-6">
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-[#FF6B2B]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -306,12 +381,15 @@ const FinancePage: React.FC = () => {
             reducir costos y proporcionar insights valiosos para impulsar el crecimiento 
             de tu negocio.
           </p>
-          <a 
-            href="/contacto" 
-            className="btn bg-[#FF6B2B] text-white hover:bg-opacity-90"
+          {/* Cambiado <a> a <Link> para consistencia con enrutamiento de React Router */}
+          <Link
+            to="/contacto" 
+            className="inline-block bg-[#FF6B2B] text-white font-semibold py-3 px-8 rounded-lg 
+                       hover:bg-orange-600 transition-colors duration-300 text-lg
+                       focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#FF6B2B] focus:ring-offset-[#1A237E]"
           >
             Solicitar una demostración
-          </a>
+          </Link>
         </div>
       </section>
     </>

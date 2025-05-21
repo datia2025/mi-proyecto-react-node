@@ -36,8 +36,6 @@ const Header: React.FC = () => {
           <NavLink to="/" label="Inicio" currentPath={location.pathname} />
           <NavLink to="/nosotros" label="Nosotros" currentPath={location.pathname} />
           <NavLink to="/aprender-con-ia" label="Aprender con IA" currentPath={location.pathname} />
-          <NavLink to="/historias" label="Historias de Transformación" currentPath={location.pathname} />
-          <NavLink to="/forma-de-trabajar" label="Nuestra Forma de Trabajar" currentPath={location.pathname} />
           <NavLink to="/soluciones" label="Soluciones Inteligentes" currentPath={location.pathname} />
           <NavLink to="/contacto" label="Contacto" currentPath={location.pathname} />
         </nav>
