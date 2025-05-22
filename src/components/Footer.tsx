@@ -4,6 +4,8 @@ import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'luc
 import logo from '../assets/logo.png';
 
 const Footer: React.FC = () => {
+  const linkedinUrl = "https://www.linkedin.com/company/datiadigital/";
+
   return (
     <footer className="bg-[#283A80] text-white">
       <div className="container mx-auto px-4 py-12">
@@ -17,8 +19,14 @@ const Footer: React.FC = () => {
               Potenciando personas con tecnología.
             </p>
             <div className="flex mt-6 space-x-4">
-              <SocialIcon icon={<Linkedin size={20} />} />
-              </div>
+              {/* Aquí pasamos la URL al SocialIcon de LinkedIn */}
+              <SocialIcon icon={<Linkedin size={20} />} url={linkedinUrl} />
+              {/* Puedes añadir más iconos sociales de la misma manera:
+              <SocialIcon icon={<Facebook size={20} />} url="TU_URL_DE_FACEBOOK" />
+              <SocialIcon icon={<Twitter size={20} />} url="TU_URL_DE_TWITTER" />
+              <SocialIcon icon={<Instagram size={20} />} url="TU_URL_DE_INSTAGRAM" />
+              */}
+            </div>
           </div>
 
           {/* Column 2: Quick Links */}
@@ -67,7 +75,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-12 pt-8 text-center text-gray-300">
-          <p>&copy; {new Date().getFullYear()} Datia. Todos los derechos reservados.</p>
+          <p>© {new Date().getFullYear()} Datia. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>
@@ -82,8 +90,8 @@ interface FooterLinkProps {
 const FooterLink: React.FC<FooterLinkProps> = ({ to, label }) => {
   return (
     <li>
-      <Link 
-        to={to} 
+      <Link
+        to={to}
         className="text-gray-300 hover:text-[#FF6B2B] transition-colors duration-300"
       >
         {label}
@@ -94,12 +102,15 @@ const FooterLink: React.FC<FooterLinkProps> = ({ to, label }) => {
 
 interface SocialIconProps {
   icon: React.ReactNode;
+  url: string; // Añadimos la prop url
 }
 
-const SocialIcon: React.FC<SocialIconProps> = ({ icon }) => {
+const SocialIcon: React.FC<SocialIconProps> = ({ icon, url }) => { // Recibimos la prop url
   return (
-    <a 
-      href="#" 
+    <a
+      href={url} // Usamos la prop url en el href
+      target="_blank" // Abre el enlace en una nueva pestaña
+      rel="noopener noreferrer" // Buenas prácticas de seguridad para target="_blank"
       className="bg-[#FF6B2B] bg-opacity-20 text-white hover:bg-opacity-100 transition-all duration-300 p-2 rounded-full"
     >
       {icon}
