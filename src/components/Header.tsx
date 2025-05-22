@@ -61,8 +61,6 @@ const Header: React.FC = () => {
             <MobileNavLink to="/" label="Inicio" currentPath={location.pathname} />
             <MobileNavLink to="/nosotros" label="Nosotros" currentPath={location.pathname} />
             <MobileNavLink to="/aprender-con-ia" label="Aprender con IA" currentPath={location.pathname} />
-            <MobileNavLink to="/historias" label="Historias de Transformación" currentPath={location.pathname} />
-            <MobileNavLink to="/forma-de-trabajar" label="Nuestra Forma de Trabajar" currentPath={location.pathname} />
             <MobileNavLink to="/soluciones" label="Soluciones Inteligentes" currentPath={location.pathname} />
             <MobileNavLink to="/contacto" label="Contacto" currentPath={location.pathname} />
           </nav>

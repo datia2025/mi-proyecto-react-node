@@ -17,11 +17,8 @@ const Footer: React.FC = () => {
               Potenciando personas con tecnología.
             </p>
             <div className="flex mt-6 space-x-4">
-              <SocialIcon icon={<Facebook size={20} />} />
-              <SocialIcon icon={<Twitter size={20} />} />
               <SocialIcon icon={<Linkedin size={20} />} />
-              <SocialIcon icon={<Instagram size={20} />} />
-            </div>
+              </div>
           </div>
 
           {/* Column 2: Quick Links */}
@@ -31,7 +28,6 @@ const Footer: React.FC = () => {
               <FooterLink to="/" label="Inicio" />
               <FooterLink to="/nosotros" label="Nosotros" />
               <FooterLink to="/aprender-con-ia" label="Aprender con IA" />
-              <FooterLink to="/historias" label="Historias de Transformación" />
               <FooterLink to="/soluciones" label="Soluciones Inteligentes" />
               <FooterLink to="/contacto" label="Contacto" />
             </ul>
@@ -56,7 +52,7 @@ const Footer: React.FC = () => {
             <ul className="space-y-4">
               <li className="flex items-start">
                 <MapPin size={20} className="mr-3 mt-1 text-[#FF6B2B]" />
-                <span>Calle 146a No.54c-86 Of.201</span>
+                <span>Calle 146a No.54c-86 Of.201 Bogotá - Colombia</span>
               </li>
               <li className="flex items-center">
                 <Phone size={20} className="mr-3 text-[#FF6B2B]" />
