@@ -93,7 +93,7 @@ const HomePage: React.FC = () => {
               link="/soluciones/operaciones"
             />
             <ServiceCard
-              title="Smart Marketing"
+              title="NextGen Marketing"
               description="Potencia tus estrategias de marketing con segmentación dinámica de audiencias, personalización automatizada y medición de impacto."
               icon={<Brain size={28} />}
               link="/soluciones/marketing"
