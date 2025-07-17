@@ -30,6 +30,8 @@ const HomePage: React.FC = () => {
         imageUrl={peopleImage} // ✅ Imagen local usada aquí
       />
 
+
+
       {/* About Brief Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
