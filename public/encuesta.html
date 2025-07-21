@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuesta - Taller de IA en Reclutamiento</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 3rem;
+            max-width: 800px;
+            width: 90%;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            animation: shimmer 2s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            color: #2d3748;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .question-container {
+            display: none;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question {
+            margin-bottom: 2rem;
+        }
+
+        .question h2 {
+            color: #2d3748;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .question-number {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .option {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f1f5f9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .option input[type="radio"] {
+            display: none;
+        }
+
+        .option-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .option-icon {
+            font-size: 1.5rem;
+            min-width: 2rem;
+        }
+
+        .textarea-container {
+            position: relative;
+        }
+
+        .textarea {
+            width: 100%;
+            padding: 1.5rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            resize: vertical;
+            min-height: 120px;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+        }
+
+        .textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #4a5568;
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e0;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 3px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 3px;
+            transition: width 0.5s ease;
+            width: 0%;
+        }
+
+        .completion-screen {
+            text-align: center;
+            display: none;
+        }
+
+        .completion-screen.active {
+            display: block;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .completion-icon {
+            font-size: 4rem;
+            color: #48bb78;
+            margin-bottom: 1rem;
+            animation: bounce 1s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        .rating-container {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .star {
+            font-size: 2.5rem;
+            color: #e2e8f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #ffd700;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 2rem;
+                margin: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .question h2 {
+                font-size: 1.5rem;
+            }
+
+            .options {
+                gap: 0.75rem;
+            }
+
+            .option {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Evaluación del Curso</h1>
+            <p>Taller de IA aplicada a Reclutamiento y Selección</p>
+        </div>
+
+        <form id="surveyForm">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <!-- Pregunta 1 -->
+            <div class="question-container active" data-question="1">
+                <div class="question">
+                    <span class="question-number">Pregunta 1 de 6</span>
+                    <h2>¿Qué herramienta de IA te pareció más útil? *</h2>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q1" value="chatgpt" required>
+                            <div class="option-text">
+                                <span class="option-icon">🤖</span>
+                                ChatGPT
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="gemini" required>
+                            <div class="option-text">
+                                <span class="option-icon">✨</span>
+                                Gemini
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="claude" required>
+                            <div class="option-text">
+                                <span class="option-icon">🎯</span>
+                                Claude
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="ninguna" required>
+                            <div class="option-text">
+                                <span class="option-icon">❌</span>
+                                Ninguna
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q1" value="no_se" required>
+                            <div class="option-text">
+                                <span class="option-icon">🤔</span>
+                                No sé aún
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 2 -->
+            <div class="question-container" data-question="2">
+                <div class="question">
+                    <span class="question-number">Pregunta 2 de 6</span>
+                    <h2>¿Cómo describirías tu experiencia en una palabra? *</h2>
+                    <div class="textarea-container">
+                        <textarea class="textarea" name="q2" placeholder="Escribe tu respuesta aquí..." maxlength="50" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 3 -->
+            <div class="question-container" data-question="3">
+                <div class="question">
+                    <span class="question-number">Pregunta 3 de 6</span>
+                    <h2>¿En qué momento del taller aprendiste más? *</h2>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q3" value="introduccion" required>
+                            <div class="option-text">
+                                <span class="option-icon">📚</span>
+                                Introducción y explicación
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="explorando" required>
+                            <div class="option-text">
+                                <span class="option-icon">🔍</span>
+                                Explorando herramientas
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="ejercicio" required>
+                            <div class="option-text">
+                                <span class="option-icon">💼</span>
+                                Ejercicio práctico con las hojas de vida
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q3" value="discusion" required>
+                            <div class="option-text">
+                                <span class="option-icon">💬</span>
+                                Discusión final
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 4 -->
+            <div class="question-container" data-question="4">
+                <div class="question">
+                    <span class="question-number">Pregunta 4 de 6</span>
+                    <h2>¿Qué mejorarías en una próxima sesión? *</h2>
+                    <div class="textarea-container">
+                        <textarea class="textarea" name="q4" placeholder="Comparte tus sugerencias..." required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 5 -->
+            <div class="question-container" data-question="5">
+                <div class="question">
+                    <span class="question-number">Pregunta 5 de 6</span>
+                    <h2>¿Recomendarías este taller a otras personas? *</h2>
+                    <div class="options">
+                        <label class="option">
+                            <input type="radio" name="q5" value="si" required>
+                            <div class="option-text">
+                                <span class="option-icon">👍</span>
+                                Sí, definitivamente
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="tal_vez" required>
+                            <div class="option-text">
+                                <span class="option-icon">🤷</span>
+                                Tal vez
+                            </div>
+                        </label>
+                        <label class="option">
+                            <input type="radio" name="q5" value="no" required>
+                            <div class="option-text">
+                                <span class="option-icon">👎</span>
+                                No
+                            </div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pregunta 6 -->
+            <div class="question-container" data-question="6">
+                <div class="question">
+                    <span class="question-number">Pregunta 6 de 6</span>
+                    <h2>Califica tu experiencia general *</h2>
+                    <div class="rating-container">
+                        <span class="star" data-rating="1">★</span>
+                        <span class="star" data-rating="2">★</span>
+                        <span class="star" data-rating="3">★</span>
+                        <span class="star" data-rating="4">★</span>
+                        <span class="star" data-rating="5">★</span>
+                    </div>
+                    <!-- Campo oculto para guardar la calificación -->
+                    <input type="hidden" name="rating" id="rating-input" required>
+                    <div class="textarea-container" style="margin-top: 2rem;">
+                        <textarea class="textarea" name="q6_comments" placeholder="¿Algo más que quieras agregar? (Opcional)"></textarea>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Pantalla de finalización -->
+        <div class="completion-screen">
+            <div class="completion-icon">🎉</div>
+            <h2>¡Gracias por tu retroalimentación!</h2>
+            <p>Tus comentarios nos ayudan a mejorar nuestros talleres.</p>
+            <p style="margin-top: 2rem; color: #718096; font-size: 1rem;">
+                Tu respuesta ha sido descargada como un archivo CSV.
+            </p>
+        </div>
+
+        <div class="navigation">
+            <button class="btn btn-secondary" id="prevBtn" onclick="changeQuestion(-1)" style="display: none;">
+                ← Anterior
+            </button>
+            <div style="flex-grow: 1;"></div>
+            <button class="btn btn-primary" id="nextBtn" onclick="changeQuestion(1)">
+                Siguiente →
+            </button>
+        </div>
+    </div>
+
+    <!-- ========================================================== -->
+    <!-- ============ INICIO DEL SCRIPT MODIFICADO ============ -->
+    <!-- ========================================================== -->
+
+    <script>
+        let currentQuestion = 1;
+        const totalQuestions = 6;
+
+        function updateProgress() {
+            // Se resta 1 para que la barra se llene completamente al llegar a la última pregunta
+            const progress = ((currentQuestion - 1) / totalQuestions) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+        }
+
+        function showQuestion(questionNum) {
+            document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+            const activeQuestion = document.querySelector(`[data-question="${questionNum}"]`);
+            if(activeQuestion) activeQuestion.classList.add('active');
+            
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            prevBtn.style.display = questionNum === 1 ? 'none' : 'flex';
+            nextBtn.textContent = questionNum === totalQuestions ? 'Finalizar 🎯' : 'Siguiente →';
+        }
+
+        function changeQuestion(direction) {
+            if (direction === 1 && currentQuestion === totalQuestions) {
+                if(validateCurrentQuestion()){
+                   finishSurvey();
+                }
+                return;
+            }
+
+            if (direction === 1 && !validateCurrentQuestion()) {
+                return;
+            }
+
+            currentQuestion += direction;
+            
+            if (currentQuestion < 1) currentQuestion = 1;
+            if (currentQuestion > totalQuestions) currentQuestion = totalQuestions;
+            
+            showQuestion(currentQuestion);
+            updateProgress();
+        }
+
+        function validateCurrentQuestion() {
+            const currentContainer = document.querySelector(`[data-question="${currentQuestion}"]`);
+            const inputs = currentContainer.querySelectorAll('[required]');
+            let isValid = true;
+
+            inputs.forEach(input => {
+                let isInputValid = false;
+                if (input.type === 'radio') {
+                    const radioGroup = document.getElementsByName(input.name);
+                    if (Array.from(radioGroup).some(r => r.checked)) {
+                        isInputValid = true;
+                    }
+                } else if (input.type === 'hidden' && input.name === 'rating') {
+                     if (input.value && parseInt(input.value) > 0) {
+                        isInputValid = true;
+                    }
+                } else if (input.value.trim() !== '') {
+                    isInputValid = true;
+                }
+                
+                if (!isInputValid) {
+                   isValid = false;
+                }
+            });
+
+            if (!isValid) {
+                 alert('Por favor, completa la pregunta antes de continuar.');
+            }
+            return isValid;
+        }
+
+        function finishSurvey() {
+            document.getElementById('progressFill').style.width = '100%';
+            generateAndDownloadCSV();
+            document.querySelector('#surveyForm').style.display = 'none';
+            document.querySelector('.completion-screen').classList.add('active');
+            document.querySelector('.navigation').style.display = 'none';
+            document.querySelector('.progress-bar').style.marginBottom = '0';
+        }
+        
+        function generateAndDownloadCSV() {
+            const form = document.getElementById('surveyForm');
+            const formData = new FormData(form);
+            const responses = Object.fromEntries(formData.entries());
+
+            // Crear timestamp para el nombre del archivo
+            const now = new Date();
+            const timestamp = now.toISOString().slice(0, 19).replace(/T/g, '_').replace(/:/g, '-');
+
+            // Headers del CSV (columnas)
+            const headers = [
+                'Herramienta más útil',
+                'Experiencia en una palabra',
+                'Momento de mayor aprendizaje',
+                'Sugerencias de mejora',
+                'Recomendaría el taller',
+                'Calificación (1-5 estrellas)',
+                'Comentarios adicionales'
+            ];
+            
+            // Función para obtener texto legible de las opciones
+            const getReadableValue = (questionName, value) => {
+                if (!value) return 'No respondió';
+                const input = form.querySelector(`input[name="${questionName}"][value="${value}"]`);
+                if (input && input.type === 'radio') {
+                    return input.closest('.option').querySelector('.option-text').textContent.trim();
+                }
+                return value; // Para textareas y otros
+            };
+
+            // Crear la fila de datos para el CSV
+            const csvRow = [
+                getReadableValue('q1', responses.q1),
+                responses.q2 || 'No respondió',
+                getReadableValue('q3', responses.q3),
+                responses.q4 || 'No respondió',
+                getReadableValue('q5', responses.q5),
+                responses.rating || 'No respondió',
+                responses.q6_comments || 'No respondió'
+            ];
+
+            // Escapar comas y comillas en los datos
+            const escapeField = (field) => `"${String(field).replace(/"/g, '""')}"`;
+            
+            // Unir todo para formar el contenido del CSV
+            const csvContent = [
+                headers.map(escapeField).join(','),
+                csvRow.map(escapeField).join(',')
+            ].join('\n');
+
+            // Crear y descargar el archivo
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `encuesta_taller_ia_${timestamp}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            }
+        }
+
+        // Event listeners para la interactividad de la UI
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.addEventListener('change', function() {
+                const options = this.closest('.options').querySelectorAll('.option');
+                options.forEach(opt => opt.classList.remove('selected'));
+                this.closest('.option').classList.add('selected');
+            });
+        });
+
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                const rating = parseInt(this.dataset.rating);
+                document.getElementById('rating-input').value = rating; // Guardar valor en campo oculto
+                
+                const stars = this.closest('.rating-container').querySelectorAll('.star');
+                stars.forEach(s => s.classList.remove('active'));
+                
+                stars.forEach((s, index) => {
+                    if (index < rating) {
+                        s.classList.add('active');
+                    }
+                });
+            });
+        });
+
+        // Inicializar el estado de la primera pregunta
+        updateProgress();
+    </script>
+</body>
+</html>
