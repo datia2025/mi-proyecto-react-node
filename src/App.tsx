@@ -15,6 +15,7 @@ import OperationsPage from './pages/solutions/OperationsPage';
 import SmartMarketingPage from './pages/solutions/SmartMarketingPage';
 import ChatbotsPage from './pages/solutions/ChatbotsPage';
 import WebAppsPage from './pages/solutions/WebAppsPage';
+import LearnPageDiscount from './pages/learn-discount'; 
 
 function App() {
   return (
@@ -36,6 +37,8 @@ function App() {
             <Route path="/soluciones/marketing" element={<SmartMarketingPage />} />
             <Route path="/soluciones/chatbots" element={<ChatbotsPage />} />
             <Route path="/soluciones/apps-web" element={<WebAppsPage />} />
+            <Route path="/learn-discount" element={<LearnPageDiscount />} /> {/* <-- AÑADE ESTA LÍNEA */}
+
           </Routes>
         </main>
         <Footer />
