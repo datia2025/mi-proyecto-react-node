@@ -89,14 +89,19 @@ const courseModulesData = [
     keyPoints: ["Análisis avanzado de datos (KPIs, 360°, clima) impulsados con IA", "Evaluación de pruebas de personalidad y creación de planes de desarrollo", "Uso de plataformas IA para mejorar informes y presentaciones de feedback.", "Construcción de prompts para sesiones coaching y de retrolimentación del desempeño."],
     bulletColor: "text-green-500", // Verde
   },
-  {
-    title: "4. Compensación Inteligente (Disponible muy pronto)",
-    description: "Optimiza tu estrategia de compensación con IA y toma decisiones más justas, ágiles y alineadas al negocio.",
-    icon: <ImageIcon size={32} />,
-    link: "/contacto",
-    keyPoints: ["Proximamente"],
-    bulletColor: "text-purple-500", // Púrpura
-  },
+{
+  title: "4. Eficiencia Organizacional Inteligente con IA",
+  description: "Analiza tu estructura, procesos y talento con el poder de la inteligencia artificial para eliminar ineficiencias y potenciar el crecimiento.",
+  icon: <ImageIcon size={32} />,
+  link: "/contacto",
+  keyPoints: [
+    "Diagnóstico Organizacional y evaluación integral de jerarquías, flujos de decisión y claridad de roles",
+    "Encuesta de Efectividad que detecta fortalezas y oportunidades de mejora en las funciones de las áreas",
+    "Análisis de Duplicidades para identificar redundancias y tareas de bajo valor",
+    "Mapa de Capacidades Críticas que identifica competencias clave, roles y equipos estratégicos"
+  ],
+  bulletColor: "text-purple-500", // Púrpura
+},
 ];
 
 
